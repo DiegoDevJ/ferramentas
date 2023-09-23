@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas</title>
+    <link rel="stylesheet" href="opl.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="C:\Users\mateu\OneDrive\Documentos\Chat Global\Minusculo Para Maisculo\index2.html" target="_self">Converter Maiuscula</a>
+        <a href="C:\Users\mateu\OneDrive\Documentos\Chat Global\Baixar videos\videos.html" target="_self">Baixar Videos</a>
+        <a href="C:\Users\mateu\OneDrive\Documentos\Chat Global\idx.html" target="_self">Thumbnail</a>
+    </div>
+    <div class="container">
+        <h1>Baixar Thumbnail do YouTube</h1>
+        <div class="form-group">
+            <input type="text" id="video-url" placeholder="Cole a URL do vídeo do YouTube" />
+        </div>
+        <div class="form-group">
+            <button class="button" onclick="getThumbnail()">Baixar Thumbnail</button>
+        </div>
+        <div id="thumbnail-container">
+        </div>
+    </div>
+
+    <script>
+        function getThumbnail() {
+            var videoUrl = document.getElementById('video-url').value;
+            var videoId = getVideoId(videoUrl);
+            var thumbnailUrl = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
+            var thumbnailContainer = document.getElementById('thumbnail-container');
+            thumbnailContainer.innerHTML = '<img src="' + thumbnailUrl + '" alt="Thumbnail" />';
+        }
+
+        function getVideoId(url) {
+            var videoId = '';
+            var match = url.match(/[?&]v=([^&]+)/);
+
+            if (match) {
+                videoId = match[1];
+            } else {
+                match = url.match(/youtu.be\/([^?]+)/);
+
+                if (match) {
+                    videoId = match[1];
+                }
+            }
+
+            return videoId;
+        }
+    </script>
+</body>
+</html>
